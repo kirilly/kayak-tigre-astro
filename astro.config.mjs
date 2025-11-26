@@ -2,7 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://kayak-tigre.com',
+  site: 'https://kirilly.github.io',
+  base: '/kayak-tigre-astro',
   integrations: [tailwind()],
   i18n: {
     defaultLocale: 'en',
