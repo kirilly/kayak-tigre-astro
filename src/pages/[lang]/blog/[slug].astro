@@ -1,6 +1,14 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { useTranslations, languages, getLocalizedPath, type Lang } from '@/i18n/translations';
+import {
+  kayakTeam,
+  mistySunrise,
+  paranaSunrise,
+  paranaSunrise2,
+  kayakSunset2,
+  kayakSunset3,
+} from '@/assets/images';
 
 export function getStaticPaths() {
   const posts = ['getting-started-kayak-tours', 'sunrise-on-kayaks'];
@@ -24,7 +32,7 @@ const postsData: Record<string, Record<Lang, any>> = {
     en: {
       title: 'Getting Started with Kayak Tours',
       date: '2025-02-17',
-      image: '/uploads/kayak-team.jpg',
+      image: kayakTeam.src,
       tags: ['Beginners', 'Tips'],
       body: `
         <p>Planning your first kayak tour in the Tigre Delta? Here's everything you need to know to make the most of your experience.</p>
@@ -61,7 +69,7 @@ const postsData: Record<string, Record<Lang, any>> = {
     es: {
       title: 'Cómo empezar con los tours de kayak',
       date: '2025-02-17',
-      image: '/uploads/kayak-team.jpg',
+      image: kayakTeam.src,
       tags: ['Principiantes', 'Consejos'],
       body: `
         <p>¿Planeando tu primer tour de kayak en el Delta del Tigre? Aquí tienes todo lo que necesitas saber para aprovechar al máximo tu experiencia.</p>
@@ -98,7 +106,7 @@ const postsData: Record<string, Record<Lang, any>> = {
     ru: {
       title: 'Как начать с каяк-туров',
       date: '2025-02-17',
-      image: '/uploads/kayak-team.jpg',
+      image: kayakTeam.src,
       tags: ['Начинающие', 'Советы'],
       body: `
         <p>Планируете свой первый каяк-тур в дельте Тигре? Вот все, что вам нужно знать, чтобы получить максимум от вашего опыта.</p>
@@ -137,7 +145,7 @@ const postsData: Record<string, Record<Lang, any>> = {
     en: {
       title: 'Sunrise on Kayaks',
       date: '2025-05-20',
-      image: '/uploads/misty-sunrise.jpg',
+      image: mistySunrise.src,
       tags: ['Experience', 'Nature'],
       body: `
         <p>Each season has its own charm. These smoky sunrises only happen in late autumn and winter, when mornings are cool but the water is still warm.</p>
@@ -154,16 +162,16 @@ const postsData: Record<string, Record<Lang, any>> = {
         </div>
 
         <div class="grid grid-cols-2 gap-4 my-8">
-          <img src="/uploads/parana-sunrise.jpg" alt="Parana sunrise" class="rounded-lg" />
-          <img src="/uploads/parana-sunrise-2.jpg" alt="Misty morning on the delta" class="rounded-lg" />
+          <img src="${paranaSunrise.src}" alt="Parana sunrise" class="rounded-lg" />
+          <img src="${paranaSunrise2.src}" alt="Misty morning on the delta" class="rounded-lg" />
         </div>
 
         <h2>The Experience</h2>
         <p>If you wish, you can arrange a weekday program and be back in the city before lunch. The price of a tour with overnight camping and food (pilaf cooked over an open fire) is $60. From two people. We provide equipment so you stay dry and warm.</p>
 
         <div class="grid grid-cols-2 gap-4 my-8">
-          <img src="/uploads/kayak-sunset-2.jpg" alt="Kayak at sunset" class="rounded-lg" />
-          <img src="/uploads/kayak-sunset-3.jpg" alt="Evening on the river" class="rounded-lg" />
+          <img src="${kayakSunset2.src}" alt="Kayak at sunset" class="rounded-lg" />
+          <img src="${kayakSunset3.src}" alt="Evening on the river" class="rounded-lg" />
         </div>
 
         <h2>Ready to Experience a Delta Sunrise?</h2>
@@ -173,7 +181,7 @@ const postsData: Record<string, Record<Lang, any>> = {
     es: {
       title: 'Amanecer en kayaks',
       date: '2025-05-20',
-      image: '/uploads/misty-sunrise.jpg',
+      image: mistySunrise.src,
       tags: ['Experiencia', 'Naturaleza'],
       body: `
         <p>Cada temporada tiene su encanto. Estos amaneceres humeantes solo ocurren a fines del otoño e invierno, cuando las mañanas son frescas pero el agua aún está tibia.</p>
@@ -190,16 +198,16 @@ const postsData: Record<string, Record<Lang, any>> = {
         </div>
 
         <div class="grid grid-cols-2 gap-4 my-8">
-          <img src="/uploads/parana-sunrise.jpg" alt="Amanecer en el Paraná" class="rounded-lg" />
-          <img src="/uploads/parana-sunrise-2.jpg" alt="Mañana brumosa en el delta" class="rounded-lg" />
+          <img src="${paranaSunrise.src}" alt="Amanecer en el Paraná" class="rounded-lg" />
+          <img src="${paranaSunrise2.src}" alt="Mañana brumosa en el delta" class="rounded-lg" />
         </div>
 
         <h2>La experiencia</h2>
         <p>Si lo deseas, puedes organizar un programa entre semana y volver a la ciudad antes del almuerzo. El precio del tour con campamento nocturno y comida (pilaf cocinado a fuego abierto) es de $60. A partir de dos personas. Proporcionamos equipamiento para que te mantengas seco y abrigado.</p>
 
         <div class="grid grid-cols-2 gap-4 my-8">
-          <img src="/uploads/kayak-sunset-2.jpg" alt="Kayak al atardecer" class="rounded-lg" />
-          <img src="/uploads/kayak-sunset-3.jpg" alt="Atardecer en el río" class="rounded-lg" />
+          <img src="${kayakSunset2.src}" alt="Kayak al atardecer" class="rounded-lg" />
+          <img src="${kayakSunset3.src}" alt="Atardecer en el río" class="rounded-lg" />
         </div>
 
         <h2>¿Listo para experimentar un amanecer en el delta?</h2>
@@ -209,7 +217,7 @@ const postsData: Record<string, Record<Lang, any>> = {
     ru: {
       title: 'Рассвет на каяках',
       date: '2025-05-20',
-      image: '/uploads/misty-sunrise.jpg',
+      image: mistySunrise.src,
       tags: ['Опыт', 'Природа'],
       body: `
         <p>В каждом времени года свой сок, своя прелесть. Такие дымчатые рассветы бывают только поздней осенью и зимой, когда по утрам прохладно, а вода ещё по-прежнему теплая.</p>
@@ -226,16 +234,16 @@ const postsData: Record<string, Record<Lang, any>> = {
         </div>
 
         <div class="grid grid-cols-2 gap-4 my-8">
-          <img src="/uploads/parana-sunrise.jpg" alt="Рассвет на Паране" class="rounded-lg" />
-          <img src="/uploads/parana-sunrise-2.jpg" alt="Туманное утро в дельте" class="rounded-lg" />
+          <img src="${paranaSunrise.src}" alt="Рассвет на Паране" class="rounded-lg" />
+          <img src="${paranaSunrise2.src}" alt="Туманное утро в дельте" class="rounded-lg" />
         </div>
 
         <h2>Впечатления</h2>
         <p>При желании можно устроить программу на буднях и до обеда уже вернуться в город. Цена тура с ночевкой в палатке и питанием (плов на костре) - $60. От двух человек. Выдаём снаряжение, чтобы было сухо и тепло.</p>
 
         <div class="grid grid-cols-2 gap-4 my-8">
-          <img src="/uploads/kayak-sunset-2.jpg" alt="Каяк на закате" class="rounded-lg" />
-          <img src="/uploads/kayak-sunset-3.jpg" alt="Вечер на реке" class="rounded-lg" />
+          <img src="${kayakSunset2.src}" alt="Каяк на закате" class="rounded-lg" />
+          <img src="${kayakSunset3.src}" alt="Вечер на реке" class="rounded-lg" />
         </div>
 
         <h2>Готовы встретить рассвет в дельте?</h2>
