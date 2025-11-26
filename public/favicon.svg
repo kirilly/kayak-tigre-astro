@@ -1,3 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0284c7">
-  <path d="M3 17h18v2H3v-2zm0-7h18v5H3v-5zm15-4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v2h12V6z"/>
+<svg viewBox="0 0 100 65" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sun rays -->
+  <line x1="50" y1="5" x2="50" y2="14" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="32" y1="11" x2="37" y2="17" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="68" y1="11" x2="63" y2="17" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="20" y1="24" x2="27" y2="26" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="80" y1="24" x2="73" y2="26" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Sun half circle -->
+  <path d="M32 40 A18 18 0 0 1 68 40" fill="#0284c7"/>
+  <!-- Canoe -->
+  <path d="M8 55 Q3 52 5 47 Q8 42 16 40 Q30 52 50 52
+           Q70 52 84 40 Q92 42 95 47 Q97 52 92 55
+           Q72 58 50 58 Q28 58 8 55 Z" fill="#0284c7"/>
 </svg>
