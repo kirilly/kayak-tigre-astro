@@ -6,7 +6,9 @@ dist/
 .astro/
 
 # Tina CMS
-.tina/__generated__/
+tina/__generated__/
+tina/tina-lock.json
+public/admin/
 
 # Environment variables
 .env
