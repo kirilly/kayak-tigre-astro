@@ -1,0 +1,141 @@
+---
+import Base from '@/layouts/Base.astro';
+import { useTranslations, languages, type Lang } from '@/i18n/translations';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+
+const content = {
+  en: {
+    title: 'About Kayak Tigre',
+    intro: 'We are passionate about sharing the natural beauty of the Tigre Delta with visitors from around the world.',
+    story: 'Founded by local guides with years of experience navigating the delta\'s intricate waterways, Kayak Tigre offers authentic, sustainable tours that connect you with nature.',
+    mission: 'Our mission is to provide unforgettable experiences while protecting and preserving the unique ecosystem of the Tigre Delta for future generations.',
+    values: [
+      { title: 'Safety First', description: 'Your safety is our top priority. All tours include certified guides and quality equipment.' },
+      { title: 'Sustainability', description: 'We practice leave-no-trace principles and support local conservation efforts.' },
+      { title: 'Local Expertise', description: 'Our guides are locals who know every channel, island, and secret spot.' },
+      { title: 'Personalized Experience', description: 'Small groups ensure a personalized, memorable adventure.' },
+    ],
+  },
+  es: {
+    title: 'Sobre Kayak Tigre',
+    intro: 'Nos apasiona compartir la belleza natural del Delta del Tigre con visitantes de todo el mundo.',
+    story: 'Fundado por guías locales con años de experiencia navegando los intrincados canales del delta, Kayak Tigre ofrece tours auténticos y sostenibles que te conectan con la naturaleza.',
+    mission: 'Nuestra misión es brindar experiencias inolvidables mientras protegemos y preservamos el ecosistema único del Delta del Tigre para las generaciones futuras.',
+    values: [
+      { title: 'Seguridad Primero', description: 'Tu seguridad es nuestra máxima prioridad. Todos los tours incluyen guías certificados y equipos de calidad.' },
+      { title: 'Sostenibilidad', description: 'Practicamos principios de no dejar rastro y apoyamos los esfuerzos de conservación local.' },
+      { title: 'Experiencia Local', description: 'Nuestros guías son locales que conocen cada canal, isla y lugar secreto.' },
+      { title: 'Experiencia Personalizada', description: 'Grupos pequeños aseguran una aventura personalizada y memorable.' },
+    ],
+  },
+  ru: {
+    title: 'О Kayak Tigre',
+    intro: 'Мы увлечены тем, чтобы делиться природной красотой дельты Тигре с посетителями со всего мира.',
+    story: 'Основанная местными гидами с многолетним опытом навигации по запутанным водным путям дельты, Kayak Tigre предлагает аутентичные, устойчивые туры, которые соединяют вас с природой.',
+    mission: 'Наша миссия — предоставлять незабываемые впечатления, защищая и сохраняя уникальную экосистему дельты Тигре для будущих поколений.',
+    values: [
+      { title: 'Безопасность прежде всего', description: 'Ваша безопасность — наш главный приоритет. Все туры включают сертифицированных гидов и качественное оборудование.' },
+      { title: 'Устойчивость', description: 'Мы практикуем принципы «не оставлять следов» и поддерживаем местные природоохранные инициативы.' },
+      { title: 'Местная экспертиза', description: 'Наши гиды — местные жители, которые знают каждый канал, остров и секретное место.' },
+      { title: 'Персональный опыт', description: 'Небольшие группы обеспечивают персонализированное, запоминающееся приключение.' },
+    ],
+  },
+};
+
+const pageContent = content[lang];
+---
+
+<Base title={t('about.title')} lang={lang}>
+  <!-- Header -->
+  <section class="pt-24 pb-12 bg-gradient-to-b from-primary-600 to-primary-700">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        {pageContent.title}
+      </h1>
+      <p class="text-primary-100 max-w-2xl mx-auto">
+        {pageContent.intro}
+      </p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img
+            src="https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg"
+            alt="Kayak Tigre team"
+            class="rounded-2xl shadow-xl"
+          />
+        </div>
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            {lang === 'es' ? 'Nuestra Historia' : lang === 'ru' ? 'Наша история' : 'Our Story'}
+          </h2>
+          <p class="text-gray-600 mb-6">
+            {pageContent.story}
+          </p>
+          <p class="text-gray-600">
+            {pageContent.mission}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        {lang === 'es' ? 'Nuestros Valores' : lang === 'ru' ? 'Наши ценности' : 'Our Values'}
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {pageContent.values.map((value) => (
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-900 mb-2">{value.title}</h3>
+            <p class="text-gray-600 text-sm">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team / CTA Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">
+        {lang === 'es' ? '¿Listo para la aventura?' : lang === 'ru' ? 'Готовы к приключению?' : 'Ready for Adventure?'}
+      </h2>
+      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+        {lang === 'es'
+          ? 'Contáctanos hoy para planificar tu próxima experiencia en el delta.'
+          : lang === 'ru'
+          ? 'Свяжитесь с нами сегодня, чтобы спланировать ваше следующее приключение в дельте.'
+          : 'Contact us today to plan your next delta experience.'}
+      </p>
+      <a
+        href="https://wa.me/5491112345678"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 px-8 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        {t('contact.whatsapp')}
+      </a>
+    </div>
+  </section>
+</Base>

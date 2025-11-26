@@ -1,0 +1,91 @@
+---
+import { useTranslations, getLocalizedPath, type Lang } from '@/i18n/translations';
+
+interface Props {
+  slug: string;
+  title: string;
+  description?: string;
+  image?: string;
+  duration?: string;
+  price?: {
+    adult?: number;
+    currency?: string;
+  };
+  lang: Lang;
+}
+
+const { slug, title, description, image, duration, price, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const formattedPrice = price?.adult
+  ? new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-AR' : 'en-US', {
+      style: 'currency',
+      currency: price.currency || 'USD',
+      minimumFractionDigits: 0,
+    }).format(price.adult)
+  : null;
+---
+
+<article class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+  <!-- Image -->
+  <a href={getLocalizedPath(`/services/${slug}`, lang)} class="block relative aspect-[4/3] overflow-hidden">
+    {image ? (
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-full h-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+        <svg class="w-16 h-16 text-white/50" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 17h18v2H3v-2zm0-7h18v5H3v-5zm15-4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v2h12V6z"/>
+        </svg>
+      </div>
+    )}
+
+    <!-- Duration Badge -->
+    {duration && (
+      <span class="absolute top-4 left-4 px-3 py-1 bg-black/70 backdrop-blur text-white text-sm font-medium rounded-full">
+        {duration}
+      </span>
+    )}
+  </a>
+
+  <!-- Content -->
+  <div class="p-5">
+    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+      <a href={getLocalizedPath(`/services/${slug}`, lang)}>
+        {title}
+      </a>
+    </h3>
+
+    {description && (
+      <p class="text-gray-600 text-sm line-clamp-2 mb-4">
+        {description}
+      </p>
+    )}
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+      {formattedPrice ? (
+        <div>
+          <span class="text-xs text-gray-500">{t('services.from')}</span>
+          <p class="text-lg font-bold text-primary-600">{formattedPrice}</p>
+        </div>
+      ) : (
+        <div />
+      )}
+
+      <a
+        href={getLocalizedPath(`/services/${slug}`, lang)}
+        class="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 hover:text-primary-700"
+      >
+        {t('blog.readMore')}
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

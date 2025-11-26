@@ -1,0 +1,125 @@
+---
+interface GalleryImage {
+  src: string;
+  alt?: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  mainImage?: string;
+}
+
+const { images, mainImage } = Astro.props;
+const allImages = mainImage ? [{ src: mainImage, alt: 'Main' }, ...images] : images;
+---
+
+<div class="image-gallery" data-images={JSON.stringify(allImages)}>
+  <!-- Main Image Display -->
+  <div class="relative aspect-[16/9] rounded-2xl overflow-hidden mb-4">
+    <img
+      id="gallery-main-image"
+      src={allImages[0]?.src}
+      alt={allImages[0]?.alt || 'Gallery image'}
+      class="w-full h-full object-cover"
+    />
+
+    <!-- Navigation Arrows -->
+    {allImages.length > 1 && (
+      <>
+        <button
+          id="gallery-prev"
+          class="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 backdrop-blur rounded-full text-white hover:bg-black/70 transition-colors"
+          aria-label="Previous image"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          id="gallery-next"
+          class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 backdrop-blur rounded-full text-white hover:bg-black/70 transition-colors"
+          aria-label="Next image"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </>
+    )}
+
+    <!-- Image Counter -->
+    {allImages.length > 1 && (
+      <div class="absolute bottom-4 right-4 px-3 py-1 bg-black/50 backdrop-blur rounded-full text-white text-sm">
+        <span id="gallery-current">1</span> / {allImages.length}
+      </div>
+    )}
+  </div>
+
+  <!-- Thumbnail Strip -->
+  {allImages.length > 1 && (
+    <div class="flex gap-2 overflow-x-auto pb-2">
+      {allImages.map((img, index) => (
+        <button
+          class={`gallery-thumb flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+            index === 0 ? 'border-primary-500 ring-2 ring-primary-200' : 'border-transparent hover:border-gray-300'
+          }`}
+          data-index={index}
+        >
+          <img
+            src={img.src}
+            alt={img.alt || `Thumbnail ${index + 1}`}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </button>
+      ))}
+    </div>
+  )}
+</div>
+
+<script>
+  const gallery = document.querySelector('.image-gallery');
+  const mainImage = document.getElementById('gallery-main-image') as HTMLImageElement;
+  const currentSpan = document.getElementById('gallery-current');
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+  const thumbs = gallery?.querySelectorAll('.gallery-thumb');
+
+  if (gallery && mainImage) {
+    const images = JSON.parse(gallery.getAttribute('data-images') || '[]');
+    let currentIndex = 0;
+
+    function showImage(index: number) {
+      if (index < 0 || index >= images.length) return;
+      currentIndex = index;
+      mainImage.src = images[index].src;
+      mainImage.alt = images[index].alt || 'Gallery image';
+      if (currentSpan) currentSpan.textContent = String(index + 1);
+
+      thumbs?.forEach((thumb, i) => {
+        thumb.classList.toggle('border-primary-500', i === index);
+        thumb.classList.toggle('ring-2', i === index);
+        thumb.classList.toggle('ring-primary-200', i === index);
+        thumb.classList.toggle('border-transparent', i !== index);
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      showImage((currentIndex - 1 + images.length) % images.length);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      showImage((currentIndex + 1) % images.length);
+    });
+
+    thumbs?.forEach((thumb, index) => {
+      thumb.addEventListener('click', () => showImage(index));
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') showImage((currentIndex - 1 + images.length) % images.length);
+      if (e.key === 'ArrowRight') showImage((currentIndex + 1) % images.length);
+    });
+  }
+</script>

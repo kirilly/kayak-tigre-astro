@@ -1,0 +1,197 @@
+---
+import Base from '@/layouts/Base.astro';
+import { useTranslations, languages, getLocalizedPath, type Lang } from '@/i18n/translations';
+
+export function getStaticPaths() {
+  const posts = ['getting-started-kayak-tours'];
+  const paths = [];
+
+  for (const lang of Object.keys(languages)) {
+    for (const slug of posts) {
+      paths.push({ params: { lang, slug } });
+    }
+  }
+
+  return paths;
+}
+
+const { lang, slug } = Astro.params as { lang: Lang; slug: string };
+const t = useTranslations(lang);
+
+// TODO: Replace with Tina CMS data fetching
+const postsData: Record<string, Record<Lang, any>> = {
+  'getting-started-kayak-tours': {
+    en: {
+      title: 'Getting Started with Kayak Tours',
+      date: '2025-02-17',
+      image: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+      tags: ['Beginners', 'Tips'],
+      body: `
+        <p>Planning your first kayak tour in the Tigre Delta? Here's everything you need to know to make the most of your experience.</p>
+
+        <h2>What to Expect</h2>
+        <p>The Tigre Delta is a unique ecosystem of islands, channels, and wildlife just 30 minutes from Buenos Aires. Whether you're a complete beginner or an experienced paddler, there's something magical about exploring these waterways.</p>
+
+        <h2>What to Bring</h2>
+        <ul>
+          <li>Comfortable clothing that can get wet</li>
+          <li>Sunscreen (SPF 50+ recommended)</li>
+          <li>Sunglasses with a strap</li>
+          <li>A hat or cap</li>
+          <li>Water bottle</li>
+          <li>Change of clothes</li>
+          <li>Towel</li>
+        </ul>
+
+        <h2>Best Time to Visit</h2>
+        <p>The delta is beautiful year-round, but the best months are from September to April when the weather is warmer. Early morning tours offer the best wildlife viewing opportunities.</p>
+
+        <h2>Ready to Book?</h2>
+        <p>Contact us via WhatsApp to reserve your spot on our next tour!</p>
+      `,
+    },
+    es: {
+      title: 'Cómo empezar con los tours de kayak',
+      date: '2025-02-17',
+      image: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+      tags: ['Principiantes', 'Consejos'],
+      body: `
+        <p>¿Planeando tu primer tour de kayak en el Delta del Tigre? Aquí tienes todo lo que necesitas saber para aprovechar al máximo tu experiencia.</p>
+
+        <h2>Qué esperar</h2>
+        <p>El Delta del Tigre es un ecosistema único de islas, canales y vida silvestre a solo 30 minutos de Buenos Aires. Ya seas principiante o remador experimentado, hay algo mágico en explorar estas vías fluviales.</p>
+
+        <h2>Qué traer</h2>
+        <ul>
+          <li>Ropa cómoda que pueda mojarse</li>
+          <li>Protector solar (se recomienda SPF 50+)</li>
+          <li>Lentes de sol con correa</li>
+          <li>Gorra o sombrero</li>
+          <li>Botella de agua</li>
+          <li>Ropa de cambio</li>
+          <li>Toalla</li>
+        </ul>
+
+        <h2>Mejor época para visitar</h2>
+        <p>El delta es hermoso todo el año, pero los mejores meses son de septiembre a abril cuando el clima es más cálido. Los tours temprano en la mañana ofrecen las mejores oportunidades para observar la vida silvestre.</p>
+
+        <h2>¿Listo para reservar?</h2>
+        <p>¡Contáctanos por WhatsApp para reservar tu lugar en nuestro próximo tour!</p>
+      `,
+    },
+    ru: {
+      title: 'Как начать с каяк-туров',
+      date: '2025-02-17',
+      image: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+      tags: ['Начинающие', 'Советы'],
+      body: `
+        <p>Планируете свой первый каяк-тур в дельте Тигре? Вот все, что вам нужно знать, чтобы получить максимум от вашего опыта.</p>
+
+        <h2>Чего ожидать</h2>
+        <p>Дельта Тигре — это уникальная экосистема островов, каналов и дикой природы всего в 30 минутах от Буэнос-Айреса. Независимо от того, являетесь ли вы новичком или опытным гребцом, есть что-то волшебное в исследовании этих водных путей.</p>
+
+        <h2>Что взять с собой</h2>
+        <ul>
+          <li>Удобная одежда, которая может намокнуть</li>
+          <li>Солнцезащитный крем (рекомендуется SPF 50+)</li>
+          <li>Солнцезащитные очки с ремешком</li>
+          <li>Кепка или шляпа</li>
+          <li>Бутылка воды</li>
+          <li>Сменная одежда</li>
+          <li>Полотенце</li>
+        </ul>
+
+        <h2>Лучшее время для посещения</h2>
+        <p>Дельта прекрасна круглый год, но лучшие месяцы — с сентября по апрель, когда погода теплее. Утренние туры предлагают лучшие возможности для наблюдения за дикой природой.</p>
+
+        <h2>Готовы забронировать?</h2>
+        <p>Свяжитесь с нами через WhatsApp, чтобы зарезервировать место в нашем следующем туре!</p>
+      `,
+    },
+  },
+};
+
+const post = postsData[slug]?.[lang];
+
+if (!post) {
+  return Astro.redirect(getLocalizedPath('/blog', lang));
+}
+
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString(lang === 'es' ? 'es-AR' : lang === 'ru' ? 'ru-RU' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<Base title={post.title} lang={lang} image={post.image}>
+  <article class="pt-16">
+    <!-- Hero Image -->
+    <div class="relative h-[40vh] min-h-[300px]">
+      <img
+        src={post.image}
+        alt={post.title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    </div>
+
+    <!-- Content -->
+    <div class="container mx-auto px-4 -mt-24 relative z-10">
+      <div class="bg-white rounded-2xl shadow-xl max-w-3xl mx-auto p-8 md:p-12">
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          {post.tags.map((tag: string) => (
+            <span class="px-3 py-1 bg-primary-50 text-primary-600 text-sm font-medium rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {post.title}
+        </h1>
+
+        <!-- Date -->
+        <time class="text-gray-500 mb-8 block">
+          {t('blog.publishedOn')} {formatDate(post.date)}
+        </time>
+
+        <!-- Body -->
+        <div class="prose prose-lg max-w-none" set:html={post.body} />
+
+        <!-- Back Link -->
+        <div class="mt-12 pt-8 border-t border-gray-100">
+          <a
+            href={getLocalizedPath('/blog', lang)}
+            class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            {lang === 'es' ? 'Volver al blog' : lang === 'ru' ? 'Вернуться в блог' : 'Back to Blog'}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer -->
+    <div class="h-16" />
+  </article>
+</Base>
+
+<style>
+  .prose h2 {
+    @apply text-2xl font-bold text-gray-900 mt-8 mb-4;
+  }
+  .prose p {
+    @apply text-gray-600 mb-4 leading-relaxed;
+  }
+  .prose ul {
+    @apply list-disc list-inside text-gray-600 mb-4 space-y-2;
+  }
+</style>

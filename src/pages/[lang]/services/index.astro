@@ -1,0 +1,128 @@
+---
+import Base from '@/layouts/Base.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import { useTranslations, languages, type Lang } from '@/i18n/translations';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+
+// TODO: Replace with Tina CMS data fetching
+const services = [
+  {
+    slug: 'delta-full-day',
+    title: lang === 'es' ? 'Experiencia Delta Día Completo' : lang === 'ru' ? 'Дельта: Полный День' : 'Delta Full Day Experience',
+    description: lang === 'es' ? 'Una inmersión completa en el delta con kayak, naturaleza y gastronomía local. Navegaremos por canales secretos, visitaremos islas y disfrutaremos de un almuerzo típico.' : lang === 'ru' ? 'Полное погружение в дельту с каякингом, природой и местной кухней. Мы проплывем по секретным каналам, посетим острова и насладимся типичным обедом.' : 'A complete immersion in the delta with kayaking, nature, and local cuisine. We will paddle through secret channels, visit islands, and enjoy a typical lunch.',
+    image: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+    duration: lang === 'es' ? 'Día completo (10:00-19:00)' : lang === 'ru' ? 'Весь день (10:00-19:00)' : 'Full day (10:00-19:00)',
+    price: { adult: 150, currency: 'USD' },
+  },
+  {
+    slug: 'mangrove-tour',
+    title: lang === 'es' ? 'Tour de Manglares para Principiantes' : lang === 'ru' ? 'Тур по мангровым зарослям для начинающих' : 'Mangrove Tour for Beginners',
+    description: lang === 'es' ? 'Perfecto para principiantes, explora los canales tranquilos del delta en kayak o SUP. Ideal para familias y quienes buscan una experiencia relajada.' : lang === 'ru' ? 'Идеально для начинающих, исследуйте тихие каналы дельты на каяке или SUP. Идеально подходит для семей и тех, кто ищет расслабляющий опыт.' : 'Perfect for beginners, explore the peaceful channels of the delta by kayak or SUP. Ideal for families and those seeking a relaxed experience.',
+    image: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg',
+    duration: lang === 'es' ? '4 horas' : lang === 'ru' ? '4 часа' : '4 hours',
+    price: { adult: 80, currency: 'USD' },
+  },
+];
+---
+
+<Base
+  title={t('services.title')}
+  lang={lang}
+  description={lang === 'es' ? 'Descubre nuestros tours de kayak y SUP en el delta del Tigre' : lang === 'ru' ? 'Откройте для себя наши туры на каяках и SUP в дельте Тигре' : 'Discover our kayak and SUP tours in the Tigre delta'}
+>
+  <!-- Header -->
+  <section class="pt-24 pb-12 bg-gradient-to-b from-primary-600 to-primary-700">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        {t('services.title')}
+      </h1>
+      <p class="text-primary-100 max-w-2xl mx-auto">
+        {lang === 'es'
+          ? 'Elige la aventura perfecta para ti. Desde principiantes hasta expertos, tenemos algo para todos.'
+          : lang === 'ru'
+          ? 'Выберите идеальное приключение для себя. От новичков до экспертов — у нас есть что-то для каждого.'
+          : 'Choose the perfect adventure for you. From beginners to experts, we have something for everyone.'}
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <ServiceCard {...service} lang={lang} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ or Info Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 text-center mb-12">
+        {lang === 'es' ? 'Información Importante' : lang === 'ru' ? 'Важная информация' : 'Important Information'}
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">
+            {lang === 'es' ? 'Qué incluye' : lang === 'ru' ? 'Что включено' : "What's Included"}
+          </h3>
+          <p class="text-gray-600 text-sm">
+            {lang === 'es'
+              ? 'Kayak/SUP, chaleco salvavidas, remo, guía experto, snacks y agua.'
+              : lang === 'ru'
+              ? 'Каяк/SUP, спасательный жилет, весло, опытный гид, закуски и вода.'
+              : 'Kayak/SUP, life jacket, paddle, expert guide, snacks and water.'}
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">
+            {lang === 'es' ? 'Qué traer' : lang === 'ru' ? 'Что взять с собой' : 'What to Bring'}
+          </h3>
+          <p class="text-gray-600 text-sm">
+            {lang === 'es'
+              ? 'Ropa cómoda, protector solar, gorra, lentes de sol, toalla y ropa de cambio.'
+              : lang === 'ru'
+              ? 'Удобная одежда, солнцезащитный крем, кепка, солнечные очки, полотенце и сменная одежда.'
+              : 'Comfortable clothes, sunscreen, cap, sunglasses, towel and change of clothes.'}
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">
+            {lang === 'es' ? 'Punto de encuentro' : lang === 'ru' ? 'Место встречи' : 'Meeting Point'}
+          </h3>
+          <p class="text-gray-600 text-sm">
+            {lang === 'es'
+              ? 'Estación de Tigre, Buenos Aires. Te enviamos la ubicación exacta al reservar.'
+              : lang === 'ru'
+              ? 'Станция Тигре, Буэнос-Айрес. Мы отправим точное местоположение при бронировании.'
+              : 'Tigre Station, Buenos Aires. We will send the exact location upon booking.'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

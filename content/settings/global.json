@@ -1,0 +1,25 @@
+{
+  "siteName": "Kayak Tigre",
+  "contact": {
+    "email": "info@kayak-tigre.com",
+    "phone": "+54 9 11 1234-5678",
+    "whatsapp": "5491112345678",
+    "instagram": "https://instagram.com/kayaktigre"
+  },
+  "heroSlides": [
+    {
+      "image": "/uploads/hero-1.jpg",
+      "title": "Explore the Tigre Delta",
+      "subtitle": "Kayak and SUP adventures for all levels",
+      "buttonText": "Explore Tours",
+      "buttonLink": "/en/services"
+    },
+    {
+      "image": "/uploads/hero-2.jpg",
+      "title": "Unforgettable Nature",
+      "subtitle": "Connect with nature in the heart of the delta",
+      "buttonText": "Learn More",
+      "buttonLink": "/en/about"
+    }
+  ]
+}
