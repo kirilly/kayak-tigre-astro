@@ -14,14 +14,19 @@ const t = useTranslations(lang);
 // TODO: Replace with Tina CMS data fetching
 const heroSlides = [
   {
-    image: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+    image: 'https://i.postimg.cc/4dGKHCXs/Video-Capture-20250217-140952.jpg',
     title: lang === 'es' ? 'Explora el Delta del Tigre' : lang === 'ru' ? 'Исследуй дельту Тигре' : 'Explore the Tigre Delta',
     subtitle: lang === 'es' ? 'Aventuras en kayak y SUP para todos los niveles' : lang === 'ru' ? 'Приключения на каяках и SUP для любого уровня' : 'Kayak and SUP adventures for all levels',
   },
   {
-    image: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg',
+    image: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg',
     title: lang === 'es' ? 'Naturaleza Inolvidable' : lang === 'ru' ? 'Незабываемая природа' : 'Unforgettable Nature',
     subtitle: lang === 'es' ? 'Conecta con la naturaleza en el corazón del delta' : lang === 'ru' ? 'Соединись с природой в сердце дельты' : 'Connect with nature in the heart of the delta',
+  },
+  {
+    image: 'https://i.postimg.cc/CxH241tf/parana4.jpg',
+    title: lang === 'es' ? 'Aventura en el Paraná' : lang === 'ru' ? 'Приключение на Паране' : 'Paraná Adventure',
+    subtitle: lang === 'es' ? 'Descubre el segundo río más grande de Sudamérica' : lang === 'ru' ? 'Открой второй по величине реку Южной Америки' : 'Discover South America\'s second largest river',
   },
 ];
 
@@ -29,19 +34,33 @@ const heroSlides = [
 const services = [
   {
     slug: 'delta-full-day',
-    title: lang === 'es' ? 'Experiencia Delta Día Completo' : lang === 'ru' ? 'Дельта: Полный День' : 'Delta Full Day Experience',
-    description: lang === 'es' ? 'Una inmersión completa en el delta con kayak, naturaleza y gastronomía local.' : lang === 'ru' ? 'Полное погружение в дельту с каякингом, природой и местной кухней.' : 'A complete immersion in the delta with kayaking, nature, and local cuisine.',
-    image: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+    title: lang === 'es' ? 'Esperita. Cien Vueltas del Río' : lang === 'ru' ? 'Esperita. Сто поворотов реки' : 'Esperita. Hundred River Turns',
+    image: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg',
     duration: lang === 'es' ? 'Día completo' : lang === 'ru' ? 'Весь день' : 'Full day',
-    price: { adult: 150, currency: 'USD' },
+    price: { adult: 65, child: 50, currency: 'USD' },
+    minAge: 4,
+    rating: 5,
+    reviewCount: 12,
   },
   {
-    slug: 'mangrove-tour',
-    title: lang === 'es' ? 'Tour de Manglares para Principiantes' : lang === 'ru' ? 'Тур по мангровым зарослям для начинающих' : 'Mangrove Tour for Beginners',
-    description: lang === 'es' ? 'Perfecto para principiantes, explora los canales tranquilos del delta.' : lang === 'ru' ? 'Идеально для начинающих, исследуйте тихие каналы дельты.' : 'Perfect for beginners, explore the peaceful channels of the delta.',
-    image: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg',
-    duration: lang === 'es' ? '4 horas' : lang === 'ru' ? '4 часа' : '4 hours',
-    price: { adult: 80, currency: 'USD' },
+    slug: 'torito-half-day',
+    title: lang === 'es' ? 'Torito. Paseo Corto' : lang === 'ru' ? 'Torito. Короткий маршрут' : 'Torito. Short Tour',
+    image: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg',
+    duration: lang === 'es' ? 'Medio día' : lang === 'ru' ? 'Полдня' : 'Half day',
+    price: { adult: 45, child: 35, currency: 'USD' },
+    minAge: 4,
+    rating: 5,
+    reviewCount: 8,
+  },
+  {
+    slug: 'private-tour',
+    title: lang === 'es' ? 'Tour Privado' : lang === 'ru' ? 'Индивидуальный тур' : 'Private Tour',
+    image: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg',
+    duration: lang === 'es' ? 'Flexible' : lang === 'ru' ? 'Гибкий' : 'Flexible',
+    price: { adult: 150, child: 100, currency: 'USD' },
+    minAge: 4,
+    rating: 5,
+    reviewCount: 5,
   },
 ];
 ---
@@ -76,7 +95,7 @@ const services = [
     </div>
   </section>
 
-  <!-- About Preview Section -->
+  <!-- About Section 1 -->
   <section class="py-16">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -88,6 +107,13 @@ const services = [
               ? 'Почему выбирают нас?'
               : 'Why Choose Us?'}
           </h2>
+          <p class="text-gray-600 mb-6">
+            {lang === 'es'
+              ? 'Sumérgete en un mundo de exuberante naturaleza salvaje donde la gente vive sobre el agua. Aquí no hay carreteras, solo una red infinita de arroyos y canales.'
+              : lang === 'ru'
+              ? 'Погрузись в мир буйной дикой природы, где люди живут на воде. Здесь нет дорог, только бесконечная сеть ручьев и каналов.'
+              : 'Immerse yourself in a world of lush wild nature where people live on the water. There are no roads here, only an endless network of streams and channels.'}
+          </p>
           <div class="space-y-4">
             <div class="flex gap-4">
               <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
@@ -116,33 +142,14 @@ const services = [
               </div>
               <div>
                 <h3 class="font-semibold text-gray-900">
-                  {lang === 'es' ? 'Horarios Flexibles' : lang === 'ru' ? 'Гибкое расписание' : 'Flexible Schedules'}
+                  {lang === 'es' ? 'Todo Incluido' : lang === 'ru' ? 'Всё включено' : 'All Inclusive'}
                 </h3>
                 <p class="text-gray-600 text-sm">
                   {lang === 'es'
-                    ? 'Adaptamos los tours a tus necesidades'
+                    ? 'Transporte en lancha, desayuno y equipo incluido'
                     : lang === 'ru'
-                    ? 'Мы адаптируем туры под ваши потребности'
-                    : 'We adapt tours to your needs'}
-                </p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="font-semibold text-gray-900">
-                  {lang === 'es' ? 'Equipo Incluido' : lang === 'ru' ? 'Снаряжение включено' : 'Equipment Included'}
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  {lang === 'es'
-                    ? 'Todo el equipo necesario está incluido'
-                    : lang === 'ru'
-                    ? 'Все необходимое снаряжение включено'
-                    : 'All necessary equipment is included'}
+                    ? 'Трансфер на катере, завтрак и снаряжение включены'
+                    : 'Boat transfer, breakfast and equipment included'}
                 </p>
               </div>
             </div>
@@ -150,15 +157,58 @@ const services = [
         </div>
         <div class="relative">
           <img
-            src="https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg"
-            alt="Kayaking in Tigre Delta"
+            src="https://i.postimg.cc/xd9XR7Wg/El-R-o-Tigre-desbocando-en-el-R-o-Luj-n-El-Club-de-Regatas-La-Marina-y-de-fondo-todo-el-verde-de-nu.jpg"
+            alt="Tigre River Delta"
             class="rounded-2xl shadow-xl"
           />
-          <div class="absolute -bottom-6 -left-6 bg-primary-600 text-white p-6 rounded-xl shadow-lg">
-            <p class="text-4xl font-bold">5+</p>
-            <p class="text-sm opacity-90">
-              {lang === 'es' ? 'Años de experiencia' : lang === 'ru' ? 'Лет опыта' : 'Years of experience'}
-            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section 2 -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <img
+            src="https://i.postimg.cc/QMYJfhfq/IMG-20250217-145333-772.jpg"
+            alt="Kayak adventure"
+            class="rounded-2xl shadow-xl"
+          />
+        </div>
+        <div class="order-1 md:order-2">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            {lang === 'es'
+              ? 'Aventura para todos'
+              : lang === 'ru'
+              ? 'Приключение для всех'
+              : 'Adventure for Everyone'}
+          </h2>
+          <p class="text-gray-600 mb-6">
+            {lang === 'es'
+              ? 'Desde el muelle central de la ciudad, nos dirigiremos a islas remotas y arroyos forestales tranquilos, lejos del ruido del centro turístico de Tigre.'
+              : lang === 'ru'
+              ? 'От центральной пристани города мы отправимся к отдалённым островам и тихим лесным протокам, вдали от шума туристического центра Тигре.'
+              : 'From the central pier of the city, we\'ll head to remote islands and quiet forest streams, away from the noise of the Tigre tourist center.'}
+          </p>
+          <p class="text-gray-600 mb-6">
+            {lang === 'es'
+              ? 'El maršruta es apto para principiantes, no se requiere experiencia previa. Si llevas un estilo de vida activo, te será fácil completar el recorrido.'
+              : lang === 'ru'
+              ? 'Маршрут подходит для начинающих, опыт не требуется. Если вы ведёте активный образ жизни, вам будет легко пройти маршрут.'
+              : 'The route is suitable for beginners, no previous experience required. If you lead an active lifestyle, you\'ll find the route easy to complete.'}
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+              {lang === 'es' ? 'Familia' : lang === 'ru' ? 'Семья' : 'Family'}
+            </span>
+            <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+              {lang === 'es' ? 'Principiantes' : lang === 'ru' ? 'Начинающие' : 'Beginners'}
+            </span>
+            <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+              {lang === 'es' ? 'Aventura' : lang === 'ru' ? 'Приключения' : 'Adventure'}
+            </span>
           </div>
         </div>
       </div>

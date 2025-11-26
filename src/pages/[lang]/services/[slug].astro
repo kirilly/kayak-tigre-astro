@@ -4,7 +4,7 @@ import ImageGallery from '@/components/ImageGallery.astro';
 import { useTranslations, languages, getLocalizedPath, type Lang } from '@/i18n/translations';
 
 export function getStaticPaths() {
-  const services = ['delta-full-day', 'mangrove-tour'];
+  const services = ['delta-full-day', 'torito-half-day', 'private-tour'];
   const paths = [];
 
   for (const lang of Object.keys(languages)) {
@@ -23,197 +23,250 @@ const t = useTranslations(lang);
 const servicesData: Record<string, Record<Lang, any>> = {
   'delta-full-day': {
     en: {
-      title: 'Delta Full Day Experience',
-      description: 'A complete immersion in the delta with kayaking, nature, and local cuisine.',
-      heroImage: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+      title: 'Esperita. Hundred River Turns',
+      subtitle: 'Complete immersion in nature, unique places, total reboot.',
+      heroImage: 'https://i.postimg.cc/4dGKHCXs/Video-Capture-20250217-140952.jpg',
       gallery: [
-        { src: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg', alt: 'Kayaking in the delta' },
+        { src: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg', alt: 'Kayaking in the delta' },
+        { src: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg', alt: 'Delta nature' },
+        { src: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg', alt: 'River view' },
+        { src: 'https://i.postimg.cc/QMYJfhfq/IMG-20250217-145333-772.jpg', alt: 'Island stop' },
       ],
-      duration: 'Full day (10:00 - 19:00)',
-      price: { adult: 150, child: 100, currency: 'USD' },
-      minAge: 8,
-      maxGroupSize: 10,
-      location: 'Tigre Station, Buenos Aires',
+      schedule: '10:00 - 19:00',
+      distance: '11 km',
+      paddleTime: '~3 hours',
+      trekking: '4 km (optional)',
+      price: { adult: 65, child: 50, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 12,
+      location: 'Tigre, Buenos Aires',
       included: [
-        'Professional kayak and paddle',
-        'Life jacket',
-        'Expert guide',
-        'Typical lunch',
-        'Snacks and water',
-        'Photos of the experience',
+        'Round-trip boat transfer (30 min each way)',
+        'Breakfast with pancakes, fruits, snacks and drinks',
+        'Complete equipment: life jacket, dry bags',
+        'Professional guide',
       ],
       body: `
-        <h2>About This Tour</h2>
-        <p>Experience the magic of the Tigre Delta on this full-day adventure. We'll paddle through serene channels, discover hidden islands, and immerse ourselves in the unique ecosystem of the delta.</p>
-
-        <h2>What to Expect</h2>
-        <p>The day begins at 10:00 AM at Tigre Station. After a brief introduction and safety briefing, we'll set off on our kayaking adventure. Throughout the day, you'll:</p>
-        <ul>
-          <li>Paddle through picturesque channels surrounded by lush vegetation</li>
-          <li>Visit traditional island homes and learn about delta life</li>
-          <li>Enjoy a delicious typical lunch at a local restaurant</li>
-          <li>Spot local wildlife including birds, capybaras, and more</li>
-          <li>Relax on secluded beaches and swimming spots</li>
-        </ul>
-
-        <h2>Requirements</h2>
-        <p>No previous kayaking experience is required. This tour is suitable for beginners and families with children 8 years and older.</p>
+        <p><strong>We'll paddle through four different rivers, land at an island festival square, and cross the island on a trail through the jungle. At the end, we'll visit President Sarmiento's house-museum, enclosed in a huge glass cube.</strong></p>
       `,
     },
     es: {
-      title: 'Experiencia Delta Día Completo',
-      description: 'Una inmersión completa en el delta con kayak, naturaleza y gastronomía local.',
-      heroImage: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+      title: 'Esperita. Cien Vueltas del Río',
+      subtitle: 'Inmersión completa en la naturaleza, lugares únicos, recarga total.',
+      heroImage: 'https://i.postimg.cc/4dGKHCXs/Video-Capture-20250217-140952.jpg',
       gallery: [
-        { src: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg', alt: 'Kayak en el delta' },
+        { src: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg', alt: 'Kayak en el delta' },
+        { src: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg', alt: 'Naturaleza del delta' },
+        { src: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg', alt: 'Vista del río' },
+        { src: 'https://i.postimg.cc/QMYJfhfq/IMG-20250217-145333-772.jpg', alt: 'Parada en la isla' },
       ],
-      duration: 'Día completo (10:00 - 19:00)',
-      price: { adult: 150, child: 100, currency: 'USD' },
-      minAge: 8,
-      maxGroupSize: 10,
-      location: 'Estación de Tigre, Buenos Aires',
+      schedule: '10:00 - 19:00',
+      distance: '11 km',
+      paddleTime: '~3 horas',
+      trekking: '4 km (opcional)',
+      price: { adult: 65, child: 50, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 12,
+      location: 'Tigre, Buenos Aires',
       included: [
-        'Kayak y remo profesional',
-        'Chaleco salvavidas',
-        'Guía experto',
-        'Almuerzo típico',
-        'Snacks y agua',
-        'Fotos de la experiencia',
+        'Transporte en lancha ida y vuelta (30 min cada trayecto)',
+        'Desayuno con panqueques, frutas, snacks y bebidas',
+        'Equipo completo: chaleco salvavidas, bolsas estancas',
+        'Guía profesional',
       ],
       body: `
-        <h2>Sobre Este Tour</h2>
-        <p>Experimenta la magia del Delta del Tigre en esta aventura de día completo. Navegaremos por canales serenos, descubriremos islas ocultas y nos sumergiremos en el ecosistema único del delta.</p>
-
-        <h2>Qué Esperar</h2>
-        <p>El día comienza a las 10:00 AM en la Estación de Tigre. Después de una breve introducción y charla de seguridad, comenzaremos nuestra aventura en kayak. Durante el día:</p>
-        <ul>
-          <li>Navegarás por pintorescos canales rodeados de vegetación exuberante</li>
-          <li>Visitarás casas isleñas tradicionales y aprenderás sobre la vida del delta</li>
-          <li>Disfrutarás de un delicioso almuerzo típico en un restaurante local</li>
-          <li>Observarás fauna local incluyendo aves, carpinchos y más</li>
-          <li>Relajate en playas apartadas y lugares para nadar</li>
-        </ul>
-
-        <h2>Requisitos</h2>
-        <p>No se requiere experiencia previa en kayak. Este tour es apto para principiantes y familias con niños de 8 años en adelante.</p>
+        <p><strong>Navegaremos en kayak por cuatro ríos diferentes, desembarcaremos en una plaza festiva isleña y cruzaremos la isla por un sendero a través de la selva. Al final, visitaremos la casa-museo del Presidente Sarmiento, rodeada por un enorme cubo de vidrio.</strong></p>
       `,
     },
     ru: {
-      title: 'Дельта: Полный День',
-      description: 'Полное погружение в дельту с каякингом, природой и местной кухней.',
-      heroImage: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg',
+      title: 'Esperita. Сто поворотов реки',
+      subtitle: 'Полное погружение в природу, уникальные места, тотальная перезагрузка.',
+      heroImage: 'https://i.postimg.cc/4dGKHCXs/Video-Capture-20250217-140952.jpg',
       gallery: [
-        { src: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg', alt: 'Каякинг в дельте' },
+        { src: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg', alt: 'Каякинг в дельте' },
+        { src: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg', alt: 'Природа дельты' },
+        { src: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg', alt: 'Вид на реку' },
+        { src: 'https://i.postimg.cc/QMYJfhfq/IMG-20250217-145333-772.jpg', alt: 'Остановка на острове' },
       ],
-      duration: 'Весь день (10:00 - 19:00)',
-      price: { adult: 150, child: 100, currency: 'USD' },
-      minAge: 8,
-      maxGroupSize: 10,
-      location: 'Станция Тигре, Буэнос-Айрес',
+      schedule: '10:00 - 19:00',
+      distance: '11 км',
+      paddleTime: '~3 часа',
+      trekking: '4 км (опционально)',
+      price: { adult: 65, child: 50, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 12,
+      location: 'Тигре, Буэнос-Айрес',
       included: [
-        'Профессиональный каяк и весло',
-        'Спасательный жилет',
-        'Опытный гид',
-        'Типичный обед',
-        'Закуски и вода',
-        'Фотографии опыта',
+        'Поездка на катере туда и обратно (30 мин в одну сторону)',
+        'Завтрак с блинами, фруктами, закусками и напитками',
+        'Полный комплект снаряжения: спасжилет, гермомешки',
+        'Профессиональный гид',
       ],
       body: `
-        <h2>Об этом туре</h2>
-        <p>Испытайте магию дельты Тигре в этом приключении на целый день. Мы проплывем по тихим каналам, откроем скрытые острова и погрузимся в уникальную экосистему дельты.</p>
-
-        <h2>Чего ожидать</h2>
-        <p>День начинается в 10:00 на станции Тигре. После краткого введения и инструктажа по безопасности мы отправимся в наше приключение на каяках. В течение дня вы:</p>
-        <ul>
-          <li>Проплывете по живописным каналам, окруженным пышной растительностью</li>
-          <li>Посетите традиционные островные дома и узнаете о жизни дельты</li>
-          <li>Насладитесь вкусным типичным обедом в местном ресторане</li>
-          <li>Увидите местную фауну, включая птиц, капибар и многое другое</li>
-          <li>Отдохнете на уединенных пляжах и местах для купания</li>
-        </ul>
-
-        <h2>Требования</h2>
-        <p>Предыдущий опыт каякинга не требуется. Этот тур подходит для начинающих и семей с детьми от 8 лет.</p>
+        <p><strong>Мы пройдем на каяках по четырём разным речкам, высадимся на островной фестивальной площади и пересечём остров по тропе через джунгли. А в конце зайдём в музей-дачу президента Сармиенто, обнесенную огромным стеклянным кубом.</strong></p>
       `,
     },
   },
-  'mangrove-tour': {
+  'torito-half-day': {
     en: {
-      title: 'Mangrove Tour for Beginners',
-      description: 'Perfect for beginners, explore the peaceful channels of the delta.',
-      heroImage: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg',
+      title: 'Torito. Short Tour',
+      subtitle: 'Perfect introduction to kayaking in the delta.',
+      heroImage: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg',
       gallery: [
-        { src: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg', alt: 'SUP in the delta' },
+        { src: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg', alt: 'Kayaking' },
+        { src: 'https://i.postimg.cc/MH9pf716/IMG-20250216-155257-789.jpg', alt: 'Delta scenery' },
       ],
-      duration: '4 hours',
-      price: { adult: 80, child: 60, currency: 'USD' },
-      minAge: 6,
-      maxGroupSize: 8,
-      location: 'Tigre Station, Buenos Aires',
+      schedule: '10:00 - 14:00',
+      distance: '6 km',
+      paddleTime: '~2 hours',
+      trekking: null,
+      price: { adult: 45, child: 35, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 10,
+      location: 'Tigre, Buenos Aires',
       included: [
-        'Kayak or SUP (your choice)',
-        'Life jacket',
-        'Expert guide',
-        'Snacks and water',
+        'Round-trip boat transfer',
+        'Light breakfast with snacks and drinks',
+        'Complete equipment: life jacket, dry bags',
+        'Professional guide',
       ],
       body: `
-        <h2>About This Tour</h2>
-        <p>This relaxed tour is perfect for beginners and families looking for a gentle introduction to kayaking or stand-up paddleboarding in the beautiful Tigre Delta.</p>
-
-        <h2>What to Expect</h2>
-        <p>We'll explore the calm, sheltered channels where you can paddle at your own pace and enjoy the natural beauty surrounding you.</p>
+        <p><strong>A shorter route perfect for those with limited time or beginners who want a taste of the delta experience. You can also choose SUP instead of kayak.</strong></p>
       `,
     },
     es: {
-      title: 'Tour de Manglares para Principiantes',
-      description: 'Perfecto para principiantes, explora los canales tranquilos del delta.',
-      heroImage: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg',
+      title: 'Torito. Paseo Corto',
+      subtitle: 'Introducción perfecta al kayak en el delta.',
+      heroImage: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg',
       gallery: [
-        { src: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg', alt: 'SUP en el delta' },
+        { src: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg', alt: 'Kayak' },
+        { src: 'https://i.postimg.cc/MH9pf716/IMG-20250216-155257-789.jpg', alt: 'Paisaje del delta' },
       ],
-      duration: '4 horas',
-      price: { adult: 80, child: 60, currency: 'USD' },
-      minAge: 6,
-      maxGroupSize: 8,
-      location: 'Estación de Tigre, Buenos Aires',
+      schedule: '10:00 - 14:00',
+      distance: '6 km',
+      paddleTime: '~2 horas',
+      trekking: null,
+      price: { adult: 45, child: 35, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 10,
+      location: 'Tigre, Buenos Aires',
       included: [
-        'Kayak o SUP (a elección)',
-        'Chaleco salvavidas',
-        'Guía experto',
-        'Snacks y agua',
+        'Transporte en lancha ida y vuelta',
+        'Desayuno ligero con snacks y bebidas',
+        'Equipo completo: chaleco salvavidas, bolsas estancas',
+        'Guía profesional',
       ],
       body: `
-        <h2>Sobre Este Tour</h2>
-        <p>Este tour relajado es perfecto para principiantes y familias que buscan una introducción suave al kayak o stand-up paddleboarding en el hermoso Delta del Tigre.</p>
-
-        <h2>Qué Esperar</h2>
-        <p>Exploraremos canales tranquilos y protegidos donde podrás remar a tu propio ritmo y disfrutar de la belleza natural que te rodea.</p>
+        <p><strong>Una ruta más corta perfecta para quienes tienen poco tiempo o principiantes que quieren probar la experiencia del delta. También puedes elegir SUP en lugar de kayak.</strong></p>
       `,
     },
     ru: {
-      title: 'Тур по мангровым зарослям для начинающих',
-      description: 'Идеально для начинающих, исследуйте тихие каналы дельты.',
-      heroImage: 'https://i.postimg.cc/1XdZbykH/VideoCapture-20250215-235643.jpg',
+      title: 'Torito. Короткий маршрут',
+      subtitle: 'Идеальное знакомство с каякингом в дельте.',
+      heroImage: 'https://i.postimg.cc/brW16hn4/20231014-161804.jpg',
       gallery: [
-        { src: 'https://i.postimg.cc/BQp0FJYK/VideoCapture-20250215-235637.jpg', alt: 'SUP в дельте' },
+        { src: 'https://i.postimg.cc/RV8SnDyf/IMG-20250216-155257-390.jpg', alt: 'Каякинг' },
+        { src: 'https://i.postimg.cc/MH9pf716/IMG-20250216-155257-789.jpg', alt: 'Пейзаж дельты' },
       ],
-      duration: '4 часа',
-      price: { adult: 80, child: 60, currency: 'USD' },
-      minAge: 6,
-      maxGroupSize: 8,
-      location: 'Станция Тигре, Буэнос-Айрес',
+      schedule: '10:00 - 14:00',
+      distance: '6 км',
+      paddleTime: '~2 часа',
+      trekking: null,
+      price: { adult: 45, child: 35, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 10,
+      location: 'Тигре, Буэнос-Айрес',
       included: [
-        'Каяк или SUP (на выбор)',
-        'Спасательный жилет',
-        'Опытный гид',
-        'Закуски и вода',
+        'Поездка на катере туда и обратно',
+        'Лёгкий завтрак с закусками и напитками',
+        'Полный комплект снаряжения: спасжилет, гермомешки',
+        'Профессиональный гид',
       ],
       body: `
-        <h2>Об этом туре</h2>
-        <p>Этот расслабляющий тур идеально подходит для начинающих и семей, ищущих мягкое введение в каякинг или SUP в красивой дельте Тигре.</p>
-
-        <h2>Чего ожидать</h2>
-        <p>Мы исследуем спокойные, защищенные каналы, где вы можете грести в своем собственном темпе и наслаждаться окружающей природной красотой.</p>
+        <p><strong>Короткий маршрут, идеальный для тех, у кого мало времени, или начинающих, желающих попробовать опыт дельты. Можно также выбрать SUP вместо каяка.</strong></p>
+      `,
+    },
+  },
+  'private-tour': {
+    en: {
+      title: 'Private Tour',
+      subtitle: 'Exclusive experience tailored to your preferences.',
+      heroImage: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg',
+      gallery: [
+        { src: 'https://i.postimg.cc/ryBTrgms/20231020-113740.jpg', alt: 'Private tour' },
+        { src: 'https://i.postimg.cc/CxH241tf/parana4.jpg', alt: 'Parana river' },
+      ],
+      schedule: 'Flexible',
+      distance: 'Custom',
+      paddleTime: 'Custom',
+      trekking: 'Optional',
+      price: { adult: 150, child: 100, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 4,
+      location: 'Tigre, Buenos Aires',
+      included: [
+        'Private boat transfer',
+        'Full breakfast',
+        'Complete equipment',
+        'Dedicated guide',
+        'Customizable route',
+      ],
+      body: `
+        <p><strong>Available on weekdays. Price for four people is $250 (includes boat ride and breakfast). Private tour for two - $150 (we'll pick you up in a small motorboat).</strong></p>
+      `,
+    },
+    es: {
+      title: 'Tour Privado',
+      subtitle: 'Experiencia exclusiva adaptada a tus preferencias.',
+      heroImage: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg',
+      gallery: [
+        { src: 'https://i.postimg.cc/ryBTrgms/20231020-113740.jpg', alt: 'Tour privado' },
+        { src: 'https://i.postimg.cc/CxH241tf/parana4.jpg', alt: 'Río Paraná' },
+      ],
+      schedule: 'Flexible',
+      distance: 'Personalizado',
+      paddleTime: 'Personalizado',
+      trekking: 'Opcional',
+      price: { adult: 150, child: 100, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 4,
+      location: 'Tigre, Buenos Aires',
+      included: [
+        'Transporte privado en lancha',
+        'Desayuno completo',
+        'Equipo completo',
+        'Guía dedicado',
+        'Ruta personalizable',
+      ],
+      body: `
+        <p><strong>Disponible entre semana. Precio para cuatro personas - $250 (incluye viaje en lancha y desayuno). Tour privado para dos - $150 (te recogemos en una lancha pequeña).</strong></p>
+      `,
+    },
+    ru: {
+      title: 'Индивидуальный тур',
+      subtitle: 'Эксклюзивный опыт, адаптированный под ваши предпочтения.',
+      heroImage: 'https://i.postimg.cc/qqntQCGH/Video-Capture-20250217-003936.jpg',
+      gallery: [
+        { src: 'https://i.postimg.cc/ryBTrgms/20231020-113740.jpg', alt: 'Индивидуальный тур' },
+        { src: 'https://i.postimg.cc/CxH241tf/parana4.jpg', alt: 'Река Парана' },
+      ],
+      schedule: 'Гибкий',
+      distance: 'По выбору',
+      paddleTime: 'По выбору',
+      trekking: 'Опционально',
+      price: { adult: 150, child: 100, currency: 'USD' },
+      minAge: 4,
+      maxGroupSize: 4,
+      location: 'Тигре, Буэнос-Айрес',
+      included: [
+        'Частный трансфер на катере',
+        'Полный завтрак',
+        'Полный комплект снаряжения',
+        'Персональный гид',
+        'Настраиваемый маршрут',
+      ],
+      body: `
+        <p><strong>Доступно по будням. Цена для четырех человек - $250 (включена поездка на катере и завтрак). Индивидуальный тур на двоих - $150 (заберем вас на небольшой моторной лодке).</strong></p>
       `,
     },
   },
@@ -232,12 +285,85 @@ const formattedPrice = new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : lang === 
 }).format(service.price.adult);
 ---
 
-<Base title={service.title} description={service.description} lang={lang} image={service.heroImage}>
+<Base title={service.title} description={service.subtitle} lang={lang} image={service.heroImage}>
   <article class="pt-16">
     <!-- Image Gallery -->
     <section class="bg-gray-100 py-8">
       <div class="container mx-auto px-4">
         <ImageGallery images={service.gallery} mainImage={service.heroImage} />
+      </div>
+    </section>
+
+    <!-- Title & Subtitle Section (Espíritu) -->
+    <section class="py-8 border-b border-gray-200">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          {service.title}
+        </h1>
+        <p class="text-lg text-gray-600 italic">
+          {service.subtitle}
+        </p>
+      </div>
+    </section>
+
+    <!-- Tour Details Icons -->
+    <section class="py-6 bg-gray-50 border-b border-gray-200">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <!-- Schedule -->
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg">
+            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500">{lang === 'es' ? 'Horario' : lang === 'ru' ? 'Время' : 'Schedule'}</p>
+              <p class="font-semibold text-gray-900">{service.schedule}</p>
+            </div>
+          </div>
+
+          <!-- Distance -->
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg">
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500">{lang === 'es' ? 'Distancia' : lang === 'ru' ? 'Дистанция' : 'Distance'}</p>
+              <p class="font-semibold text-gray-900">{service.distance}</p>
+            </div>
+          </div>
+
+          <!-- Paddle Time -->
+          <div class="flex items-center gap-3 p-3 bg-white rounded-lg">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 17h18v2H3v-2zm0-7h18v5H3v-5zm15-4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v2h12V6z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500">{lang === 'es' ? 'En agua' : lang === 'ru' ? 'На воде' : 'Paddle time'}</p>
+              <p class="font-semibold text-gray-900">{service.paddleTime}</p>
+            </div>
+          </div>
+
+          <!-- Trekking -->
+          {service.trekking && (
+            <div class="flex items-center gap-3 p-3 bg-white rounded-lg">
+              <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500">{lang === 'es' ? 'Trekking' : lang === 'ru' ? 'Треккинг' : 'Trekking'}</p>
+                <p class="font-semibold text-gray-900">{service.trekking}</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </section>
 
@@ -247,22 +373,18 @@ const formattedPrice = new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : lang === 
         <div class="grid lg:grid-cols-3 gap-12">
           <!-- Main Content -->
           <div class="lg:col-span-2">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {service.title}
-            </h1>
-            <p class="text-lg text-gray-600 mb-8">
-              {service.description}
-            </p>
-
             <!-- Body Content -->
-            <div class="prose prose-lg max-w-none" set:html={service.body} />
+            <div class="prose prose-lg max-w-none mb-8" set:html={service.body} />
 
             <!-- What's Included -->
-            <div class="mt-12">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+            <div class="bg-green-50 rounded-2xl p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
                 {t('services.included')}
               </h2>
-              <ul class="grid sm:grid-cols-2 gap-3">
+              <ul class="space-y-2">
                 {service.included.map((item: string) => (
                   <li class="flex items-center gap-3">
                     <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -280,71 +402,54 @@ const formattedPrice = new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : lang === 
             <div class="sticky top-24 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
               <!-- Price -->
               <div class="text-center pb-6 border-b border-gray-100">
-                <p class="text-sm text-gray-500 mb-1">{t('services.from')}</p>
-                <p class="text-4xl font-bold text-primary-600">{formattedPrice}</p>
-                <p class="text-sm text-gray-500">{t('services.person')}</p>
+                <div class="flex justify-center gap-8 mb-4">
+                  <div>
+                    <p class="text-xs text-gray-500">{lang === 'es' ? 'Adulto' : lang === 'ru' ? 'Взрослый' : 'Adult'}</p>
+                    <p class="text-2xl font-bold text-primary-600">${service.price.adult}</p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-500">{lang === 'es' ? 'Niño' : lang === 'ru' ? 'Ребёнок' : 'Child'}</p>
+                    <p class="text-2xl font-bold text-gray-600">${service.price.child}</p>
+                  </div>
+                </div>
+                <p class="text-xs text-gray-500">
+                  {lang === 'es' ? 'Niños 4-16 años' : lang === 'ru' ? 'Дети 4-16 лет' : 'Children 4-16 years'}
+                </p>
               </div>
 
-              <!-- Details -->
-              <div class="py-6 space-y-4">
-                <div class="flex items-center gap-3">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <div>
-                    <p class="text-sm text-gray-500">{t('services.duration')}</p>
-                    <p class="font-medium text-gray-900">{service.duration}</p>
-                  </div>
+              <!-- Quick Details -->
+              <div class="py-4 space-y-3 border-b border-gray-100">
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-gray-500">{lang === 'es' ? 'Ubicación' : lang === 'ru' ? 'Место' : 'Location'}</span>
+                  <span class="font-medium text-gray-900">{service.location}</span>
                 </div>
-
-                <div class="flex items-center gap-3">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  <div>
-                    <p class="text-sm text-gray-500">{t('services.groupSize')}</p>
-                    <p class="font-medium text-gray-900">{service.maxGroupSize} {lang === 'es' ? 'personas' : lang === 'ru' ? 'человек' : 'people'}</p>
-                  </div>
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-gray-500">{lang === 'es' ? 'Grupo máx.' : lang === 'ru' ? 'Макс. группа' : 'Max group'}</span>
+                  <span class="font-medium text-gray-900">{service.maxGroupSize}</span>
                 </div>
-
-                <div class="flex items-center gap-3">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                  <div>
-                    <p class="text-sm text-gray-500">{t('services.minAge')}</p>
-                    <p class="font-medium text-gray-900">{service.minAge} {t('common.years')}</p>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-3">
-                  <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <div>
-                    <p class="text-sm text-gray-500">{lang === 'es' ? 'Ubicación' : lang === 'ru' ? 'Место' : 'Location'}</p>
-                    <p class="font-medium text-gray-900">{service.location}</p>
-                  </div>
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-gray-500">{lang === 'es' ? 'Edad mín.' : lang === 'ru' ? 'Мин. возраст' : 'Min age'}</span>
+                  <span class="font-medium text-gray-900">{service.minAge}+</span>
                 </div>
               </div>
 
               <!-- CTA -->
-              <a
-                href="https://wa.me/5491112345678"
-                target="_blank"
-                rel="noopener"
-                class="flex items-center justify-center gap-2 w-full py-3 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                {t('services.book')} via WhatsApp
-              </a>
-
-              <p class="text-center text-sm text-gray-500 mt-4">
-                {lang === 'es' ? 'Respuesta rápida garantizada' : lang === 'ru' ? 'Гарантированный быстрый ответ' : 'Quick response guaranteed'}
-              </p>
+              <div class="pt-4">
+                <a
+                  href="https://wa.me/5491112345678"
+                  target="_blank"
+                  rel="noopener"
+                  class="flex items-center justify-center gap-2 w-full py-3 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  {t('services.book')} via WhatsApp
+                </a>
+                <p class="text-center text-xs text-gray-500 mt-3">
+                  {lang === 'es' ? 'Respuesta rápida garantizada' : lang === 'ru' ? 'Быстрый ответ гарантирован' : 'Quick response guaranteed'}
+                </p>
+              </div>
             </div>
           </div>
         </div>
