@@ -2,6 +2,19 @@
 import Base from '@/layouts/Base.astro';
 import ImageGallery from '@/components/ImageGallery.astro';
 import { useTranslations, languages, getLocalizedPath, type Lang } from '@/i18n/translations';
+import {
+  deltaAerial,
+  deltaNature,
+  kayakGroup,
+  kayakTour,
+  kayakSunset,
+  kayakSunset2,
+  kayakSunset3,
+  tigreRiver,
+  mistySunrise,
+  paranaSunrise,
+  paranaSunrise2,
+} from '@/assets/images';
 
 export function getStaticPaths() {
   const services = ['delta-full-day', 'torito-half-day', 'private-tour'];
@@ -25,12 +38,12 @@ const servicesData: Record<string, Record<Lang, any>> = {
     en: {
       title: 'Esperita. Hundred River Turns',
       subtitle: 'Complete immersion in nature, unique places, total reboot.',
-      heroImage: '/uploads/delta-aerial.jpg',
+      heroImage: deltaAerial.src,
       gallery: [
-        { src: '/uploads/kayak-group.jpg', alt: 'Kayaking in the delta' },
-        { src: '/uploads/kayak-tour.jpg', alt: 'Delta nature' },
-        { src: '/uploads/kayak-sunset.jpg', alt: 'River view' },
-        { src: '/uploads/tigre-river.jpg', alt: 'Island stop' },
+        { src: kayakGroup.src, alt: 'Kayaking in the delta' },
+        { src: kayakTour.src, alt: 'Delta nature' },
+        { src: kayakSunset.src, alt: 'River view' },
+        { src: tigreRiver.src, alt: 'Island stop' },
       ],
       schedule: '10:00 - 19:00',
       distance: '11 km',
@@ -53,12 +66,12 @@ const servicesData: Record<string, Record<Lang, any>> = {
     es: {
       title: 'Esperita. Cien Vueltas del Río',
       subtitle: 'Inmersión completa en la naturaleza, lugares únicos, recarga total.',
-      heroImage: '/uploads/delta-aerial.jpg',
+      heroImage: deltaAerial.src,
       gallery: [
-        { src: '/uploads/kayak-group.jpg', alt: 'Kayak en el delta' },
-        { src: '/uploads/kayak-tour.jpg', alt: 'Naturaleza del delta' },
-        { src: '/uploads/kayak-sunset.jpg', alt: 'Vista del río' },
-        { src: '/uploads/tigre-river.jpg', alt: 'Parada en la isla' },
+        { src: kayakGroup.src, alt: 'Kayak en el delta' },
+        { src: kayakTour.src, alt: 'Naturaleza del delta' },
+        { src: kayakSunset.src, alt: 'Vista del río' },
+        { src: tigreRiver.src, alt: 'Parada en la isla' },
       ],
       schedule: '10:00 - 19:00',
       distance: '11 km',
@@ -81,12 +94,12 @@ const servicesData: Record<string, Record<Lang, any>> = {
     ru: {
       title: 'Esperita. Сто поворотов реки',
       subtitle: 'Полное погружение в природу, уникальные места, тотальная перезагрузка.',
-      heroImage: '/uploads/delta-aerial.jpg',
+      heroImage: deltaAerial.src,
       gallery: [
-        { src: '/uploads/kayak-group.jpg', alt: 'Каякинг в дельте' },
-        { src: '/uploads/kayak-tour.jpg', alt: 'Природа дельты' },
-        { src: '/uploads/kayak-sunset.jpg', alt: 'Вид на реку' },
-        { src: '/uploads/tigre-river.jpg', alt: 'Остановка на острове' },
+        { src: kayakGroup.src, alt: 'Каякинг в дельте' },
+        { src: kayakTour.src, alt: 'Природа дельты' },
+        { src: kayakSunset.src, alt: 'Вид на реку' },
+        { src: tigreRiver.src, alt: 'Остановка на острове' },
       ],
       schedule: '10:00 - 19:00',
       distance: '11 км',
@@ -111,10 +124,10 @@ const servicesData: Record<string, Record<Lang, any>> = {
     en: {
       title: 'Torito. Short Tour',
       subtitle: 'Perfect introduction to kayaking in the delta.',
-      heroImage: '/uploads/misty-sunrise.jpg',
+      heroImage: mistySunrise.src,
       gallery: [
-        { src: '/uploads/kayak-group.jpg', alt: 'Kayaking' },
-        { src: '/uploads/kayak-sunset-2.jpg', alt: 'Delta scenery' },
+        { src: kayakGroup.src, alt: 'Kayaking' },
+        { src: kayakSunset2.src, alt: 'Delta scenery' },
       ],
       schedule: '10:00 - 14:00',
       distance: '6 km',
@@ -137,10 +150,10 @@ const servicesData: Record<string, Record<Lang, any>> = {
     es: {
       title: 'Torito. Paseo Corto',
       subtitle: 'Introducción perfecta al kayak en el delta.',
-      heroImage: '/uploads/misty-sunrise.jpg',
+      heroImage: mistySunrise.src,
       gallery: [
-        { src: '/uploads/kayak-group.jpg', alt: 'Kayak' },
-        { src: '/uploads/kayak-sunset-2.jpg', alt: 'Paisaje del delta' },
+        { src: kayakGroup.src, alt: 'Kayak' },
+        { src: kayakSunset2.src, alt: 'Paisaje del delta' },
       ],
       schedule: '10:00 - 14:00',
       distance: '6 km',
@@ -163,10 +176,10 @@ const servicesData: Record<string, Record<Lang, any>> = {
     ru: {
       title: 'Torito. Короткий маршрут',
       subtitle: 'Идеальное знакомство с каякингом в дельте.',
-      heroImage: '/uploads/misty-sunrise.jpg',
+      heroImage: mistySunrise.src,
       gallery: [
-        { src: '/uploads/kayak-group.jpg', alt: 'Каякинг' },
-        { src: '/uploads/kayak-sunset-2.jpg', alt: 'Пейзаж дельты' },
+        { src: kayakGroup.src, alt: 'Каякинг' },
+        { src: kayakSunset2.src, alt: 'Пейзаж дельты' },
       ],
       schedule: '10:00 - 14:00',
       distance: '6 км',
@@ -191,10 +204,10 @@ const servicesData: Record<string, Record<Lang, any>> = {
     en: {
       title: 'Private Tour',
       subtitle: 'Exclusive experience tailored to your preferences.',
-      heroImage: '/uploads/parana-sunrise.jpg',
+      heroImage: paranaSunrise.src,
       gallery: [
-        { src: '/uploads/kayak-sunset-3.jpg', alt: 'Private tour' },
-        { src: '/uploads/parana-sunrise-2.jpg', alt: 'Parana river' },
+        { src: kayakSunset3.src, alt: 'Private tour' },
+        { src: paranaSunrise2.src, alt: 'Parana river' },
       ],
       schedule: 'Flexible',
       distance: 'Custom',
@@ -218,10 +231,10 @@ const servicesData: Record<string, Record<Lang, any>> = {
     es: {
       title: 'Tour Privado',
       subtitle: 'Experiencia exclusiva adaptada a tus preferencias.',
-      heroImage: '/uploads/parana-sunrise.jpg',
+      heroImage: paranaSunrise.src,
       gallery: [
-        { src: '/uploads/kayak-sunset-3.jpg', alt: 'Tour privado' },
-        { src: '/uploads/parana-sunrise-2.jpg', alt: 'Río Paraná' },
+        { src: kayakSunset3.src, alt: 'Tour privado' },
+        { src: paranaSunrise2.src, alt: 'Río Paraná' },
       ],
       schedule: 'Flexible',
       distance: 'Personalizado',
@@ -245,10 +258,10 @@ const servicesData: Record<string, Record<Lang, any>> = {
     ru: {
       title: 'Индивидуальный тур',
       subtitle: 'Эксклюзивный опыт, адаптированный под ваши предпочтения.',
-      heroImage: '/uploads/parana-sunrise.jpg',
+      heroImage: paranaSunrise.src,
       gallery: [
-        { src: '/uploads/kayak-sunset-3.jpg', alt: 'Индивидуальный тур' },
-        { src: '/uploads/parana-sunrise-2.jpg', alt: 'Река Парана' },
+        { src: kayakSunset3.src, alt: 'Индивидуальный тур' },
+        { src: paranaSunrise2.src, alt: 'Река Парана' },
       ],
       schedule: 'Гибкий',
       distance: 'По выбору',

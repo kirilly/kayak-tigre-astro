@@ -161,6 +161,9 @@ export function useTranslations(lang: Lang) {
   };
 }
 
+const BASE_URL = import.meta.env.BASE_URL || '/';
+
 export function getLocalizedPath(path: string, lang: Lang): string {
-  return `/${lang}${path.startsWith('/') ? path : '/' + path}`;
+  const base = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;
+  return `${base}/${lang}${path.startsWith('/') ? path : '/' + path}`;
 }

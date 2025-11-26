@@ -7,7 +7,9 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const currentPath = Astro.url.pathname.replace(`/${lang}`, '') || '/';
+const BASE_URL = import.meta.env.BASE_URL || '/';
+const base = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;
+const currentPath = Astro.url.pathname.replace(`${base}/${lang}`, '') || '/';
 
 const navItems = [
   { href: '/', label: t('nav.home') },
@@ -55,7 +57,7 @@ const navItems = [
           <div class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
             {Object.entries(languages).map(([code, name]) => (
               <a
-                href={`/${code}${currentPath}`}
+                href={`${base}/${code}${currentPath}`}
                 class={`block px-4 py-2 text-sm hover:bg-gray-50 ${
                   code === lang ? 'text-primary-600 font-medium' : 'text-gray-700'
                 }`}
@@ -101,7 +103,7 @@ const navItems = [
         <div class="flex gap-2 px-4 pt-2 border-t border-gray-100 mt-2">
           {Object.entries(languages).map(([code, name]) => (
             <a
-              href={`/${code}${currentPath}`}
+              href={`${base}/${code}${currentPath}`}
               class={`px-3 py-1 text-sm rounded ${
                 code === lang
                   ? 'bg-primary-600 text-white'

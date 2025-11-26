@@ -3,6 +3,15 @@ import Base from '@/layouts/Base.astro';
 import HeroCarousel from '@/components/HeroCarousel.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { useTranslations, languages, type Lang } from '@/i18n/translations';
+import {
+  deltaAerial,
+  deltaNature,
+  paranaSunrise2,
+  paranaSunrise,
+  mistySunrise,
+  tigreRiver,
+  kayakGroup,
+} from '@/assets/images';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({ params: { lang } }));
@@ -14,17 +23,17 @@ const t = useTranslations(lang);
 // TODO: Replace with Tina CMS data fetching
 const heroSlides = [
   {
-    image: '/uploads/delta-aerial.jpg',
+    image: deltaAerial.src,
     title: lang === 'es' ? 'Explora el Delta del Tigre' : lang === 'ru' ? 'Исследуй дельту Тигре' : 'Explore the Tigre Delta',
     subtitle: lang === 'es' ? 'Aventuras en kayak y SUP para todos los niveles' : lang === 'ru' ? 'Приключения на каяках и SUP для любого уровня' : 'Kayak and SUP adventures for all levels',
   },
   {
-    image: '/uploads/delta-nature.jpg',
+    image: deltaNature.src,
     title: lang === 'es' ? 'Naturaleza Inolvidable' : lang === 'ru' ? 'Незабываемая природа' : 'Unforgettable Nature',
     subtitle: lang === 'es' ? 'Conecta con la naturaleza en el corazón del delta' : lang === 'ru' ? 'Соединись с природой в сердце дельты' : 'Connect with nature in the heart of the delta',
   },
   {
-    image: '/uploads/parana-sunrise-2.jpg',
+    image: paranaSunrise2.src,
     title: lang === 'es' ? 'Aventura en el Paraná' : lang === 'ru' ? 'Приключение на Паране' : 'Paraná Adventure',
     subtitle: lang === 'es' ? 'Descubre el segundo río más grande de Sudamérica' : lang === 'ru' ? 'Открой второй по величине реку Южной Америки' : 'Discover South America\'s second largest river',
   },
@@ -35,7 +44,7 @@ const services = [
   {
     slug: 'delta-full-day',
     title: lang === 'es' ? 'Esperita. Cien Vueltas del Río' : lang === 'ru' ? 'Esperita. Сто поворотов реки' : 'Esperita. Hundred River Turns',
-    image: '/uploads/delta-nature.jpg',
+    image: deltaNature.src,
     duration: lang === 'es' ? 'Día completo' : lang === 'ru' ? 'Весь день' : 'Full day',
     price: { adult: 65, child: 50, currency: 'USD' },
     minAge: 4,
@@ -45,7 +54,7 @@ const services = [
   {
     slug: 'torito-half-day',
     title: lang === 'es' ? 'Torito. Paseo Corto' : lang === 'ru' ? 'Torito. Короткий маршрут' : 'Torito. Short Tour',
-    image: '/uploads/misty-sunrise.jpg',
+    image: mistySunrise.src,
     duration: lang === 'es' ? 'Medio día' : lang === 'ru' ? 'Полдня' : 'Half day',
     price: { adult: 45, child: 35, currency: 'USD' },
     minAge: 4,
@@ -55,7 +64,7 @@ const services = [
   {
     slug: 'private-tour',
     title: lang === 'es' ? 'Tour Privado' : lang === 'ru' ? 'Индивидуальный тур' : 'Private Tour',
-    image: '/uploads/parana-sunrise.jpg',
+    image: paranaSunrise.src,
     duration: lang === 'es' ? 'Flexible' : lang === 'ru' ? 'Гибкий' : 'Flexible',
     price: { adult: 150, child: 100, currency: 'USD' },
     minAge: 4,
@@ -157,7 +166,7 @@ const services = [
         </div>
         <div class="relative">
           <img
-            src="/uploads/tigre-river.jpg"
+            src={tigreRiver.src}
             alt="Tigre River Delta"
             class="rounded-2xl shadow-xl"
           />
@@ -172,7 +181,7 @@ const services = [
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="order-2 md:order-1">
           <img
-            src="/uploads/kayak-group.jpg"
+            src={kayakGroup.src}
             alt="Kayak adventure"
             class="rounded-2xl shadow-xl"
           />

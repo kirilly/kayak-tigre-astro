@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { useTranslations, languages, type Lang } from '@/i18n/translations';
+import { deltaNature, mistySunrise, paranaSunrise } from '@/assets/images';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({ params: { lang } }));
@@ -15,7 +16,7 @@ const services = [
   {
     slug: 'delta-full-day',
     title: lang === 'es' ? 'Esperita. Cien Vueltas del Río' : lang === 'ru' ? 'Esperita. Сто поворотов реки' : 'Esperita. Hundred River Turns',
-    image: '/uploads/delta-nature.jpg',
+    image: deltaNature.src,
     duration: lang === 'es' ? 'Día completo' : lang === 'ru' ? 'Весь день' : 'Full day',
     price: { adult: 65, child: 50, currency: 'USD' },
     minAge: 4,
@@ -25,7 +26,7 @@ const services = [
   {
     slug: 'torito-half-day',
     title: lang === 'es' ? 'Torito. Paseo Corto' : lang === 'ru' ? 'Torito. Короткий маршрут' : 'Torito. Short Tour',
-    image: '/uploads/misty-sunrise.jpg',
+    image: mistySunrise.src,
     duration: lang === 'es' ? 'Medio día' : lang === 'ru' ? 'Полдня' : 'Half day',
     price: { adult: 45, child: 35, currency: 'USD' },
     minAge: 4,
@@ -35,7 +36,7 @@ const services = [
   {
     slug: 'private-tour',
     title: lang === 'es' ? 'Tour Privado' : lang === 'ru' ? 'Индивидуальный тур' : 'Private Tour',
-    image: '/uploads/parana-sunrise.jpg',
+    image: paranaSunrise.src,
     duration: lang === 'es' ? 'Flexible' : lang === 'ru' ? 'Гибкий' : 'Flexible',
     price: { adult: 150, child: 100, currency: 'USD' },
     minAge: 4,

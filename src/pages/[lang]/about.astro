@@ -1,6 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { useTranslations, languages, type Lang } from '@/i18n/translations';
+import { kayakTeam } from '@/assets/images';
 
 export function getStaticPaths() {
   return Object.keys(languages).map((lang) => ({ params: { lang } }));
@@ -70,7 +71,7 @@ const pageContent = content[lang];
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <img
-            src="/uploads/kayak-team.jpg"
+            src={kayakTeam.src}
             alt="Kayak Tigre team"
             class="rounded-2xl shadow-xl"
           />
