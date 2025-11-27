@@ -1,6 +1,7 @@
 ---
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import BookingModal from '@/components/BookingModal.astro';
 import type { Lang } from '@/i18n/translations';
 import { deltaAerial } from '@/assets/images';
 
@@ -64,6 +65,9 @@ const faviconPath = baseUrl.endsWith('/') ? `${baseUrl}favicon.svg` : `${baseUrl
       <slot />
     </main>
     <Footer lang={lang} />
+
+    <!-- Booking Modal -->
+    <BookingModal lang={lang} />
 
     <!-- Instagram Embed Script -->
     <script async src="//www.instagram.com/embed.js"></script>

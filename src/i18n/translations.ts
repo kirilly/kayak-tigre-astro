@@ -66,8 +66,8 @@ export const ui = {
     'nav.contact': 'Contacto',
 
     // Hero
-    'hero.cta': 'Ver Tours',
-    'hero.secondary': 'Saber Más',
+    'hero.cta': 'Ver tours',
+    'hero.secondary': 'Conocé más',
 
     // Services
     'services.title': 'Nuestros Tours',
@@ -76,7 +76,7 @@ export const ui = {
     'services.minAge': 'Edad Mín.',
     'services.groupSize': 'Tamaño del Grupo',
     'services.included': 'Incluye',
-    'services.book': 'Reservar',
+    'services.book': 'Reservá',
     'services.from': 'Desde',
     'services.person': 'por persona',
     'services.hours': 'horas',
@@ -84,20 +84,20 @@ export const ui = {
 
     // Blog
     'blog.title': 'Blog',
-    'blog.readMore': 'Leer Más',
+    'blog.readMore': 'Leer más',
     'blog.publishedOn': 'Publicado el',
 
     // About
     'about.title': 'Sobre Nosotros',
 
     // Contact
-    'contact.title': 'Contáctanos',
+    'contact.title': 'Contactanos',
     'contact.whatsapp': 'WhatsApp',
     'contact.email': 'Correo',
 
     // Footer
     'footer.rights': 'Todos los derechos reservados',
-    'footer.followUs': 'Síguenos',
+    'footer.followUs': 'Seguinos',
 
     // Common
     'common.loading': 'Cargando...',

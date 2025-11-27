@@ -75,12 +75,12 @@ const navItems = [
         </div>
 
         <!-- CTA Button -->
-        <a
-          href={getLocalizedPath('/services', lang)}
-          class="hidden sm:inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors"
+        <button
+          data-booking-modal
+          class="hidden sm:inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors cursor-pointer"
         >
           {t('services.book')}
-        </a>
+        </button>
 
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-700">
